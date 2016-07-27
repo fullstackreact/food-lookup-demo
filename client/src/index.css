@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.App {
+  margin-top: 7em;
+}
+
+#food-search {
+  margin-top: 5em;
+}

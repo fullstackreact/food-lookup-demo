@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    sqlite3 (1.3.11)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sqlite3
