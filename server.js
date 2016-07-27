@@ -33,15 +33,19 @@ app.get('/api/food', (req, res) => {
     limit 100
   `);
 
-  res.json(
-    r[0].values.map((entry) => {
-      const e = {};
-      COLUMNS.forEach((c, idx) => {
-        e[c] = entry[idx];
-      });
-      return e;
-    }),
-  );
+  if (r[0]) {
+    res.json(
+      r[0].values.map((entry) => {
+        const e = {};
+        COLUMNS.forEach((c, idx) => {
+          e[c] = entry[idx];
+        });
+        return e;
+      }),
+    );
+  } else {
+    res.json([]);
+  }
 });
 
 app.listen(app.get('port'), () => {
