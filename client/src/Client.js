@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 function search(query) {
   return fetch(`http://localhost:3001/api/food?q=${query}`, {
     accept: 'application/json',
