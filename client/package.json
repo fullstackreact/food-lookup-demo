@@ -6,7 +6,6 @@
     "react-scripts": "0.1.0"
   },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1"
   },
