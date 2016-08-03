@@ -9,8 +9,8 @@ We have a [detailed blog post](https://www.fullstackreact.com/articles/using-cre
 ## Running
 
 ```
-git clone git@github.com:fullstackreact/create-react-app-with-server.git
-cd create-react-app-with-server
+git clone git@github.com:fullstackreact/food-lookup-demo.git
+cd food-lookup-demo
 npm i
 npm start
 ```
