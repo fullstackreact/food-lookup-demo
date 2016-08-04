@@ -10,16 +10,6 @@ const app = express();
 
 app.set('port', (process.env.API_PORT || 3001));
 
-// Allow requests from pages served by Webpack
-const allowCrossDomain = function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
-  next();
-};
-app.use(allowCrossDomain);
-
 const COLUMNS = [
   'sugar_g',
   'carbohydrate_g',
