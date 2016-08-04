@@ -8,7 +8,7 @@ const db = new sqlite.Database(filebuffer);
 
 const app = express();
 
-app.set('port', (process.env.PORT || 3001));
+app.set('port', (process.env.API_PORT || 3001));
 
 // Allow requests from pages served by Webpack
 const allowCrossDomain = function (req, res, next) {
