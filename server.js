@@ -27,6 +27,8 @@ app.get('/api/food', (req, res) => {
     return;
   }
 
+  // WARNING: Not for production use! The following statement
+  // is not protected against SQL injections.
   const r = db.exec(`
     select ${COLUMNS.join(', ')} from entries
     where description like '%${param}%'
