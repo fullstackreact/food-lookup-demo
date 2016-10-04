@@ -22,7 +22,7 @@ export default function SelectedFoods(props) {
           props.foods.map((food, idx) => (
             <tr
               key={idx}
-              onClick={() => props.onFoodClick(food)}
+              onClick={() => props.onFoodClick(idx)}
             >
               <td>{food.description}</td>
               <td className='right aligned'>{food.kcal}</td>
