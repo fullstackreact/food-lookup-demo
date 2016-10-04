@@ -11,9 +11,11 @@ const app = express();
 app.set('port', (process.env.API_PORT || 3001));
 
 const COLUMNS = [
-  'sugar_g',
   'carbohydrate_g',
   'protein_g',
+  'fa_sat_g',
+  'fa_mono_g',
+  'fa_poly_g',
   'kcal',
   'description',
 ];
@@ -40,7 +42,15 @@ app.get('/api/food', (req, res) => {
       r[0].values.map((entry) => {
         const e = {};
         COLUMNS.forEach((c, idx) => {
-          e[c] = entry[idx];
+          // combine fat columns
+          if (c.match(/^fa_/)) {
+            e.fat_g = e.fat_g || 0.0;
+            e.fat_g = (
+              parseFloat(e.fat_g, 10) + parseFloat(entry[idx], 10)
+            ).toFixed(2);
+          } else {
+            e[c] = entry[idx];
+          }
         });
         return e;
       }),
