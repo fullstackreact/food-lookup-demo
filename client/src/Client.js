@@ -1,5 +1,4 @@
-import fetch from 'isomorphic-fetch';
-
+/* eslint-disable no-undef */
 function search(query, cb) {
   return fetch(`api/food?q=${query}`, {
     accept: 'application/json',
