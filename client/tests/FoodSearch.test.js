@@ -44,9 +44,9 @@ describe('FoodSearch', () => {
       });
     });
 
-    it('should update state property `searchValue`', () => {
+    it('should update state property `value`', () => {
       expect(
-        wrapper.state().searchValue
+        wrapper.state().value
       ).toEqual(value);
     });
 

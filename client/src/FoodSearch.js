@@ -8,14 +8,14 @@ const FoodSearch = React.createClass({
     return {
       foods: [],
       showRemoveIcon: false,
-      searchValue: '',
+      value: '',
     };
   },
   handleSearchChange: function (e) {
     const value = e.target.value;
 
     this.setState({
-      searchValue: value,
+      value: value,
     });
 
     if (value === '') {
@@ -39,7 +39,7 @@ const FoodSearch = React.createClass({
     this.setState({
       foods: [],
       showRemoveIcon: false,
-      searchValue: '',
+      value: '',
     });
   },
   render: function () {
@@ -55,7 +55,7 @@ const FoodSearch = React.createClass({
                       className='prompt'
                       type='text'
                       placeholder='Search foods...'
-                      value={this.state.searchValue}
+                      value={this.state.value}
                       onChange={this.handleSearchChange}
                     />
                     <i className='search icon' />
