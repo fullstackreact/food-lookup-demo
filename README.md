@@ -12,7 +12,7 @@ We have a [detailed blog post](https://www.fullstackreact.com/articles/using-cre
 
 Check out the [Rails version](https://github.com/fullstackreact/food-lookup-demo-rails) if that's your preferred API server platform.
 
-## Running
+## Running locally
 
 ```
 git clone git@github.com:fullstackreact/food-lookup-demo.git
@@ -23,8 +23,10 @@ cd client
 npm i
 
 cd ..
-npm start
+npm run dev
 ```
+
+**Important**: **`npm start`** is intended for production only. Use `npm run dev`.
 
 ## Overview
 
@@ -41,7 +43,7 @@ return fetch(`/api/food?q=${query}`, {
 })
 ```
 
-This request is made to `localhost:3000`, the Webpack dev server. Because the route has the special prefix `/api/`, the Webpack server knows that this request is actually intended for our API server. We specify in `package.json` that we would like Webpack to proxy API requests to `localhost:3001`:
+This request is made to `localhost:3000`, the Webpack dev server. Webpack will infer that this request is actually intended for our API server. We specify in `package.json` that we would like Webpack to proxy API requests to `localhost:3001`:
 
 ```js
 // Inside client/package.json
@@ -57,7 +59,7 @@ Therefore, the user's browser makes a request to Webpack at `localhost:3000` whi
 This setup provides two advantages:
 
 1. If the user's browser tried to request `localhost:3001` directly, we'd run into issues with CORS.
-2. In many setups, this means that references to the API URL in development matches that in production. You don't have to do something like this:
+2. The API URL in development matches that in production. You don't have to do something like this:
 
 ```js
 // Example API base URL determination in Client.js
@@ -65,3 +67,75 @@ const apiBaseUrl = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '
 ```
 
 This setup uses [node-foreman](https://github.com/strongloop/node-foreman) for process management. Executing `npm start` instructs Foreman to boot both the Webpack dev server and the API server.
+
+## Deploying
+
+### Background
+
+The app is ready to be deployed to Heroku. In `package.json`, we specify separate boot commands for development and production:
+
+```
+"start": "nf start -p $PORT",
+"dev": "nf start -p 3000 --procfile Procfile.dev",
+```
+
+In development, we use `Procfile.dev` which boots both the API server and the Webpack server:
+
+```
+web: cd client && npm start
+api: PORT=3001 npm run server
+```
+
+In production, Heroku will use `Procfile` which boots just the server:
+
+```
+web: npm run server
+```
+
+Inside `server.js`, we tell Node/Express we'd like it to serve static assets in production:
+
+```
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+```
+
+### Steps
+
+We assume basic knowledge of Heroku.
+
+**0. Setup your Heroku account and Heroku CLI**
+
+For installing the CLI tool, see [this article](https://devcenter.heroku.com/articles/heroku-command-line).
+
+**1. Build the React app**
+
+Running `npm run build` creates the static bundle which we can then use any HTTP server to serve:
+
+```
+cd client/
+npm run build
+```
+
+**2. Commit the `client/build` folder to source control**
+
+From the root of the project:
+
+```
+git add client/build
+git commit -m 'Adding `build` to source control'
+```
+
+**3. Create the Heroku app**
+
+```
+heroku apps:create food-lookup-demo
+```
+
+**4. Push to Heroku**
+
+```
+git push heroku master
+```
+
+Heroku will give you a link at which to view your live app.
