@@ -66,8 +66,6 @@ export default function SelectedFoods(props) {
   );
 }
 
-// Good example of a helper function specific to this module
-// that is inaccessible from outside this module.
 function sum(foods, prop) {
   return foods.reduce((memo, food) => (
     parseInt(food[prop], 10) + memo
