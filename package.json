@@ -21,6 +21,6 @@
   "scripts": {
     "start": "nf start -p $PORT",
     "dev": "nf start -p 3000 --procfile Procfile.dev",
-    "server": "./node_modules/.bin/babel-node server.js"
+    "server": "babel-node server.js"
   }
 }
