@@ -1,2 +1,2 @@
-web: cd client && npm start
-api: PORT=3001 npm run server
+web: cross-env PORT=3000 npm run client
+api: cross-env PORT=3001 npm run server
