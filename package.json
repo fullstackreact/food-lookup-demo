@@ -18,6 +18,6 @@
     "sql.js": "^0.3.2"
   },
   "scripts": {
-    "server": "API_PORT=3001 ./node_modules/.bin/babel-node server.js"
+    "server": "babel-node server.js"
   }
 }
