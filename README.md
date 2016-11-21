@@ -23,10 +23,8 @@ cd client
 npm i
 
 cd ..
-npm run dev
+npm start
 ```
-
-**Important**: **`npm start`** is intended for production only. Use `npm run dev`.
 
 ## Overview
 
@@ -66,25 +64,13 @@ This setup provides two advantages:
 const apiBaseUrl = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '/'
 ```
 
-This setup uses [node-foreman](https://github.com/strongloop/node-foreman) for process management. Executing `npm start` instructs Foreman to boot both the Webpack dev server and the API server.
+This setup uses [concurrently](https://github.com/kimmobrunfeldt/concurrently) for process management. Executing `npm start` instructs `concurrently` to boot both the Webpack dev server and the API server.
 
 ## Deploying
 
 ### Background
 
-The app is ready to be deployed to Heroku. In `package.json`, we specify separate boot commands for development and production:
-
-```
-"start": "nf start -p $PORT",
-"dev": "nf start -p 3000 --procfile Procfile.dev",
-```
-
-In development, we use `Procfile.dev` which boots both the API server and the Webpack server:
-
-```
-web: cd client && npm start
-api: PORT=3001 npm run server
-```
+The app is ready to be deployed to Heroku.
 
 In production, Heroku will use `Procfile` which boots just the server:
 
@@ -99,6 +85,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 ```
+
+You just need to have Webpack produce a static bundle of the React app (below).
 
 ### Steps
 
