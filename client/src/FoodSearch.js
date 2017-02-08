@@ -3,15 +3,15 @@ import React from 'react';
 import Client from './Client';
 
 const MATCHING_ITEM_LIMIT = 25;
-const FoodSearch = React.createClass({
-  getInitialState: function () {
-    return {
-      foods: [],
-      showRemoveIcon: false,
-      searchValue: '',
-    };
-  },
-  handleSearchChange: function (e) {
+
+class FoodSearch extends React.Component {
+  state = {
+    foods: [],
+    showRemoveIcon: false,
+    searchValue: '',
+  };
+
+  handleSearchChange = (e) => {
     const value = e.target.value;
 
     this.setState({
@@ -34,15 +34,17 @@ const FoodSearch = React.createClass({
         });
       });
     }
-  },
-  handleSearchCancel: function () {
+  };
+
+  handleSearchCancel = () => {
     this.setState({
       foods: [],
       showRemoveIcon: false,
       searchValue: '',
     });
-  },
-  render: function () {
+  };
+
+  render() {
     return (
       <div id='food-search'>
         <table className='ui selectable structured large table'>
@@ -98,7 +100,7 @@ const FoodSearch = React.createClass({
         </table>
       </div>
     );
-  },
-});
+  }
+}
 
 export default FoodSearch;
