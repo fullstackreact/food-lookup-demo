@@ -45,6 +45,22 @@ class FoodSearch extends React.Component {
   };
 
   render() {
+    const { showRemoveIcon, foods } = this.state;
+    const removeIconStyle = showRemoveIcon ? {} : { visibility: 'hidden' };
+
+    const foodRows = foods.map((food, idx) => (
+      <tr
+        key={idx}
+        onClick={() => this.props.onFoodClick(food)}
+      >
+        <td>{food.description}</td>
+        <td className='right aligned'>{food.kcal}</td>
+        <td className='right aligned'>{food.protein_g}</td>
+        <td className='right aligned'>{food.fat_g}</td>
+        <td className='right aligned'>{food.carbohydrate_g}</td>
+      </tr>
+    ));
+
     return (
       <div id='food-search'>
         <table className='ui selectable structured large table'>
@@ -62,14 +78,11 @@ class FoodSearch extends React.Component {
                     />
                     <i className='search icon' />
                   </div>
-                  {
-                    this.state.showRemoveIcon ? (
-                      <i
-                        className='remove icon'
-                        onClick={this.handleSearchCancel}
-                      />
-                    ) : ''
-                  }
+                  <i
+                    className='remove icon'
+                    onClick={this.handleSearchCancel}
+                    style={removeIconStyle}
+                  />
                 </div>
               </th>
             </tr>
@@ -82,21 +95,8 @@ class FoodSearch extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {
-            this.state.foods.map((food, idx) => (
-              <tr
-                key={idx}
-                onClick={() => this.props.onFoodClick(food)}
-              >
-                <td>{food.description}</td>
-                <td className='right aligned'>{food.kcal}</td>
-                <td className='right aligned'>{food.protein_g}</td>
-                <td className='right aligned'>{food.fat_g}</td>
-                <td className='right aligned'>{food.carbohydrate_g}</td>
-              </tr>
-            ))
-          }
-        </tbody>
+            {foodRows}
+          </tbody>
         </table>
       </div>
     );

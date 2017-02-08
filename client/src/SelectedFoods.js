@@ -1,6 +1,21 @@
 import React from 'react';
 
 export default function SelectedFoods(props) {
+  const { foods } = props;
+
+  const foodRows = foods.map((food, idx) => (
+    <tr
+      key={idx}
+      onClick={() => props.onFoodClick(idx)}
+    >
+      <td>{food.description}</td>
+      <td className='right aligned'>{food.kcal}</td>
+      <td className='right aligned'>{food.protein_g}</td>
+      <td className='right aligned'>{food.fat_g}</td>
+      <td className='right aligned'>{food.carbohydrate_g}</td>
+    </tr>
+  ));
+
   return (
     <table className='ui selectable structured large table'>
       <thead>
@@ -18,20 +33,7 @@ export default function SelectedFoods(props) {
         </tr>
       </thead>
       <tbody>
-        {
-          props.foods.map((food, idx) => (
-            <tr
-              key={idx}
-              onClick={() => props.onFoodClick(idx)}
-            >
-              <td>{food.description}</td>
-              <td className='right aligned'>{food.kcal}</td>
-              <td className='right aligned'>{food.protein_g}</td>
-              <td className='right aligned'>{food.fat_g}</td>
-              <td className='right aligned'>{food.carbohydrate_g}</td>
-            </tr>
-          ))
-        }
+        {foodRows}
       </tbody>
       <tfoot>
         <tr>
@@ -40,25 +42,25 @@ export default function SelectedFoods(props) {
             className='right aligned'
             id='total-kcal'
           >
-            {sum(props.foods, 'kcal')}
+            {sum(foods, 'kcal')}
           </th>
           <th
             className='right aligned'
             id='total-protein_g'
           >
-            {sum(props.foods, 'protein_g')}
+            {sum(foods, 'protein_g')}
           </th>
           <th
             className='right aligned'
             id='total-fat_g'
           >
-            {sum(props.foods, 'fat_g')}
+            {sum(foods, 'fat_g')}
           </th>
           <th
             className='right aligned'
             id='total-carbohydrate_g'
           >
-            {sum(props.foods, 'carbohydrate_g')}
+            {sum(foods, 'carbohydrate_g')}
           </th>
         </tr>
       </tfoot>

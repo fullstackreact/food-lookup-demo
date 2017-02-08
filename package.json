@@ -5,7 +5,6 @@
   "dependencies": {
     "babel-cli": "6.14.0",
     "babel-core": "6.14.0",
-    "babel-plugin-transform-class-properties": "^6.22.0",
     "express": "4.13.3",
     "fs": "0.0.2",
     "sql.js": "0.3.2"
@@ -14,9 +13,15 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "babel-node server.js",
     "client": "babel-node start-client.js",
-    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1"
+    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "concurrently": "3.1.0"
+    "concurrently": "3.1.0",
+    "eslint": "3.15.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.9.0"
   }
 }

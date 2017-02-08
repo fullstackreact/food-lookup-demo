@@ -6,5 +6,5 @@ import '../semantic/dist/semantic.min.css';
 
 ReactDOM.render(
   <App />,
-  document.getElementById('root')
+  document.getElementById('root'), // eslint-disable-line no-undef
 );

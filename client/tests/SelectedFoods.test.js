@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */``
-
 import { shallow } from 'enzyme';
 import React from 'react';
 import SelectedFoods from '../src/SelectedFoods';
@@ -12,19 +10,19 @@ describe('SelectedFoods', () => {
       wrapper = shallow(
         <SelectedFoods
           foods={[]}
-        />
+        />,
       );
     });
 
     it('should not display any rows in body', () => {
       expect(
-        wrapper.find('tbody tr').length
+        wrapper.find('tbody tr').length,
       ).toEqual(0);
     });
 
     it('should display a zero kcal value', () => {
       expect(
-        wrapper.find('#total-kcal').first().text()
+        wrapper.find('#total-kcal').first().text(),
       ).toEqual('0.00');
     });
   });
@@ -47,28 +45,28 @@ describe('SelectedFoods', () => {
       },
     ];
     const totalKcals = foods.reduce(
-      (memo, f) => parseFloat(f.kcal) + memo, 0.0
+      (memo, f) => parseFloat(f.kcal) + memo, 0.0,
     ).toFixed(2);
 
     beforeEach(() => {
       wrapper = shallow(
         <SelectedFoods
           foods={foods}
-        />
+        />,
       );
     });
 
     it('should display the foods in the table', () => {
       expect(
-        wrapper.find('tbody tr').length
+        wrapper.find('tbody tr').length,
       ).toEqual(foods.length);
     });
 
     it('should total appropriate kcal', () => {
       expect(
-        wrapper.find('#total-kcal').first().text()
+        wrapper.find('#total-kcal').first().text(),
       ).toEqual(
-        totalKcals.toString()
+        totalKcals.toString(),
       );
     });
   });

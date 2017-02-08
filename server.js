@@ -58,7 +58,7 @@ app.get('/api/food', (req, res) => {
           }
         });
         return e;
-      })
+      }),
     );
   } else {
     res.json([]);
