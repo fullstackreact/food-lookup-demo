@@ -18,7 +18,7 @@ Check out the [Rails version](https://github.com/fullstackreact/food-lookup-demo
 ## Running locally
 
 ```
-git clone git@github.com:fullstackreact/food-lookup-demo.git
+git clone https://github.com/fullstackreact/food-lookup-demo.git
 cd food-lookup-demo
 npm i
 
