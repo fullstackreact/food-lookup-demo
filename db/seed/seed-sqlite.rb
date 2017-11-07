@@ -45,7 +45,7 @@ print "\nWorking..."
 
 dir = File.dirname(File.expand_path(__FILE__))
 lineno = 1
-CSV.foreach(File.join(dir, 'raw-ndb.csv'), 'r:ISO8859-1') do |row|
+CSV.foreach(File.join(dir, 'raw-ndb.csv'), {:encoding => 'ISO8859-1'}) do |row|
   lineno = $.
 
   next if lineno == 1
